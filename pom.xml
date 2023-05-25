@@ -28,6 +28,9 @@
 		<module>
 			api-movie
 		</module>
+		<module>
+			eureka-server
+		</module>
 	</modules>
 
 
