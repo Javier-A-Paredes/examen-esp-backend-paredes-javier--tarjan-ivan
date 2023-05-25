@@ -34,6 +34,9 @@
 		<module>
 			config-server
 		</module>
+		<module>
+			api-gateway
+		</module>
 	</modules>
 
 
