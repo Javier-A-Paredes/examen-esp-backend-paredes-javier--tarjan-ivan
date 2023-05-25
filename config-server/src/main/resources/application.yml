@@ -7,5 +7,5 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/jonathanvictoricadh/202305-Grupo5-Config
+          uri: https://github.com/IvanTarjan/config-data-parcial-espBack
           force-pull: true
