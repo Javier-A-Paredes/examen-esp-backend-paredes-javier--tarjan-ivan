@@ -8,8 +8,9 @@ services:
       MYSQL_USER: 'usr-movie'
       MYSQL_PASSWORD: 'pwd-movie'
       MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_TCP_PORT: 3307
     ports:
-      - '3306:3306'
+      - '3307:3307'
     expose:
-      - '3306'
+      - '3307'
    
