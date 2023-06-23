@@ -1,6 +1,6 @@
 package com.dh.catalog.client;
 
-import com.dh.catalog.model.movie.Movie;
+import com.dh.catalog.model.serie.Serie;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name="movie-service")
-public interface MovieServiceClient {
+@FeignClient(name="serie-service")
+public interface SerieServiceClient {
 
-	@GetMapping("/api/v1/movies/{genre}")
-	List<Movie> getMovieByGenre(@PathVariable (value = "genre") String genre);
+    @GetMapping("/api/v1/series/{genre}")
+    List<Serie> getSerieByGenre(@PathVariable (value = "genre") String genre);
+
 
 
 }
