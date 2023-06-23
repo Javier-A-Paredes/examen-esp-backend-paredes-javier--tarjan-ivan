@@ -23,7 +23,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: 'usr-final-mongo'
       MONGO_INITDB_ROOT_PASSWORD: 'pwd-final-mongo'
     ports:
-      - 27018:27018
+      - 27018:27017
     expose:
       - 27018
     volumes:
