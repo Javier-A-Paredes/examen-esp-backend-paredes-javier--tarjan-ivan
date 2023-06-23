@@ -13,4 +13,18 @@ services:
       - '3307:3307'
     expose:
       - '3307'
-   
+
+  mongo-container:
+    image: mongo
+    container_name: mongo-container
+    restart: on-failure
+    environment:
+      MONGO_INITDB_DATABASE: 'final-mongo'
+      MONGO_INITDB_ROOT_USERNAME: 'usr-final-mongo'
+      MONGO_INITDB_ROOT_PASSWORD: 'pwd-final-mongo'
+    ports:
+      - 27017:27017
+    expose:
+      - 27017
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
