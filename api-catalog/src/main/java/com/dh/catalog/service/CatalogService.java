@@ -1,5 +1,7 @@
 package com.dh.catalog.service;
 
+import com.dh.catalog.client.MovieServiceClient;
+import com.dh.catalog.client.SerieServiceClient;
 import com.dh.catalog.model.movie.Movie;
 import com.dh.catalog.model.serie.Serie;
 import com.dh.catalog.repository.MovieRepository;
@@ -16,17 +18,17 @@ import java.util.List;
 
 @Service
 public class CatalogService {
-    private final MovieRepository movieRepository;
-    private final SerieRepository serieRepository;
+    private final MovieServiceClient movieServiceClient;
+    private final SerieServiceClient serieServiceClient;
 
     @Autowired
-    public CatalogService(MovieRepository movieRepository, SerieRepository serieRepository){
-        this.movieRepository = movieRepository;
-        this.serieRepository = serieRepository;
+    public CatalogService(MovieServiceClient movieServiceClient, SerieServiceClient serieServiceClient){
+        this.movieServiceClient = movieServiceClient;
+        this.serieServiceClient = serieServiceClient;
     }
 
    public Respuesta getGenre(String genre){
-        return new Respuesta(serieRepository.findAllByGenre(genre), movieRepository.findAllByGenre(genre));
+        return new Respuesta(serieServiceClient.getSerieByGenre(genre), movieServiceClient.getMovieByGenre(genre));
    }
 
     @Getter

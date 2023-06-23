@@ -1,4 +1,4 @@
-db = db.getSiblingDB('api_serie_mongo');
+db = db.getSiblingDB('api-serie-mongo');
 db.createUser(
     {
         user: "usr-final-mongo",
@@ -6,14 +6,14 @@ db.createUser(
         roles: [
             {
                 role: "readWrite",
-                db: "api_serie_mongo"
+                db: "api-serie-mongo"
             }
         ]
     }
 );
 db.createCollection("series");
 
-db = db.getSiblingDB('api_catalog_mongo');
+db = db.getSiblingDB('api-catalog-mongo');
 db.createUser(
     {
         user: "usr-final-mongo",
@@ -21,7 +21,7 @@ db.createUser(
         roles: [
             {
                 role: "readWrite",
-                db: "api_catalog_mongo"
+                db: "api-catalog-mongo"
             }
         ]
     }
