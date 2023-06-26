@@ -22,22 +22,18 @@ import java.util.List;
 @RequestMapping("/api/v1/catalog")
 public class CatalogController {
 
-	private final MovieServiceClient movieServiceClient;
-	private final SerieServiceClient serieServiceClient;
 	private final CatalogService catalogService;
 	public CatalogController(MovieServiceClient movieServiceClient, SerieServiceClient serieServiceClient, CatalogService catalogService) {
-		this.movieServiceClient = movieServiceClient;
-		this.serieServiceClient = serieServiceClient;
 		this.catalogService = catalogService;
 	}
 
 	@GetMapping("/movie/{genre}")
 	ResponseEntity<List<Movie>> getGenreMovie(@PathVariable String genre) {
-		return ResponseEntity.ok(movieServiceClient.getMovieByGenre(genre));
+		return ResponseEntity.ok(catalogService.getMovieByGenre(genre));
 	}
 	@GetMapping("/serie/{genre}")
 	ResponseEntity<List<Serie>> getGenreSerie(@PathVariable String genre){
-		return ResponseEntity.ok(serieServiceClient.getSerieByGenre(genre));
+		return ResponseEntity.ok(catalogService.getSerieByGenre(genre));
 	};
 
 	@GetMapping("/{genre}")
