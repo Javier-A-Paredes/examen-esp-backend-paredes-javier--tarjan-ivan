@@ -60,7 +60,7 @@ public class CatalogService {
         }
     }
     @Retry(name = "retryCatalog")
-    @CircuitBreaker(name = "clientCatalog", fallbackMethod = "getCatalogMovieFallBack")
+    @CircuitBreaker(name = "clientCatalog", fallbackMethod = "getCatalogFallBack")
     public Respuesta getGenre(String genre){
         return new Respuesta(serieServiceClient.getSerieByGenre(genre), movieServiceClient.getMovieByGenre(genre));
     }
@@ -69,6 +69,7 @@ public class CatalogService {
         try {
             return new Respuesta(serieRepository.findAllByGenre(genre), movieRepository.findAllByGenre(genre));
         } catch (Exception e){
+            System.out.println("getCatalogFallBackException:"+ e.getMessage());
             throw new Exception("Could not delete customer");
         }
     }
