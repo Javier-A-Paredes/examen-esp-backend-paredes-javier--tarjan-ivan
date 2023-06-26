@@ -4,6 +4,7 @@ import com.dh.apiserie.model.Chapter;
 import com.dh.apiserie.model.Season;
 import com.dh.apiserie.model.Serie;
 import com.dh.apiserie.repository.SerieRepository;
+import com.dh.apiserie.service.SerieService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,7 +23,7 @@ public class ApiSerieApplication {
 	}
 
 	@Bean
-	public CommandLineRunner loadData(SerieRepository repository) {
+	public CommandLineRunner loadData(SerieService repository) {
 		String baseUrl = "www.netflix.com/series";
 
 		return (args) -> {
@@ -64,8 +65,8 @@ public class ApiSerieApplication {
 
 			Serie serieA = new Serie( UUID.randomUUID().toString(),"Serie A", "terror", serieASeasons);
 			Serie serieB = new Serie( UUID.randomUUID().toString(),"Serie B", "comedia", serieBSeasons);
-			repository.save(serieA);
-			repository.save(serieB);
+			repository.createSerie(serieA);
+			repository.createSerie(serieB);
 
 		};
 	}

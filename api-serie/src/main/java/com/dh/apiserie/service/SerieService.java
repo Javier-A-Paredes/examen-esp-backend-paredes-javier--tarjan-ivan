@@ -1,5 +1,6 @@
 package com.dh.apiserie.service;
 
+import com.dh.apiserie.event.SaveSerieEventProducer;
 import com.dh.apiserie.model.Serie;
 import com.dh.apiserie.repository.SerieRepository;
 import org.springframework.stereotype.Service;
@@ -10,11 +11,13 @@ import java.util.List;
 public class SerieService {
 
     private final SerieRepository repository;
+    private final SaveSerieEventProducer saveSerieEventProducer;
 
 
 
-    public SerieService(SerieRepository repository) {
+    public SerieService(SerieRepository repository, SaveSerieEventProducer saveSerieEventProducer) {
         this.repository = repository;
+        this.saveSerieEventProducer = saveSerieEventProducer;
     }
 
 
@@ -23,7 +26,12 @@ public class SerieService {
         return repository.findAllByGenre(genre);
     }
 
-    public Serie createSerie(Serie serieDto) {
-        return repository.save(serieDto);
+    public Serie createSerie(Serie serie) {
+        saveSerieEventProducer.publishFinalizarCursoEvent(serie);
+        return repository.save(serie);
+    }
+
+    public List<Serie> findAll(){
+        return repository.findAll();
     }
 }
